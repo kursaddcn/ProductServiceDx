@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "f633a052-1661-492c-b13a-128ac71e8da7",
+		"name": "ProductServiceAPI",
+		"description": "This API Documentation containts ProductServiceDx Projects controllers endpoints with sample data.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29802059"
+	},
+	"item": [
+		{
+			"name": "ProductInsertion",
+			"item": [
+				{
+					"name": "addProduct",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "testUser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name-7\",\r\n    \"code\":\"code-7\",\r\n    \"description\": \"des-7\",\r\n    \"brand\": \"brand-7\",\r\n    \"currency\": \"currency-7\",\r\n    \"price\": 7,\r\n    \"stockCount\": 7,\r\n    \"isDeleted\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/addProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addProduct"
+							]
+						},
+						"description": "Adds new product with the Product Entity Model. Id is binded from DB, doesnt given externally."
+					},
+					"response": []
+				}
+			],
+			"description": "Adding new product"
+		},
+		{
+			"name": "ProductDeletion",
+			"item": [
+				{
+					"name": "softDeleteProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/deleteProduct/softDelete/6508b1ff8c80ec289dd6d487",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"deleteProduct",
+								"softDelete",
+								"6508b1ff8c80ec289dd6d487"
+							]
+						},
+						"description": "Soft Delete with ID"
+					},
+					"response": []
+				},
+				{
+					"name": "hardDeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/deleteProduct/hardDelete/6508b1ff8c80ec289dd6d487",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"deleteProduct",
+								"hardDelete",
+								"6508b1ff8c80ec289dd6d487"
+							]
+						},
+						"description": "HardDelete with ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Deletetion takes 2 option.\n\nSoft deletion sets isDeleted flag to true. Thus, none of queries does not display softly deleted products. But Hard delete completely removes document from db. Also checks about previous step of deletion. So an entity must be deleted by the order firstly Soft-delete then Hard-delete."
+		},
+		{
+			"name": "Product Search",
+			"item": [
+				{
+					"name": "searchProductByName",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "testUser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/searchProduct/name/test-5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"searchProduct",
+								"name",
+								"test-5",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchByInterval",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/searchProduct/priceInterval/10/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"searchProduct",
+								"priceInterval",
+								"10",
+								"12"
+							]
+						},
+						"description": "Search with min and max price values."
+					},
+					"response": []
+				},
+				{
+					"name": "searchProductByCode",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/searchProduct/code/test-10/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"searchProduct",
+								"code",
+								"test-10",
+								""
+							]
+						},
+						"description": "Searches with product code."
+					},
+					"response": []
+				},
+				{
+					"name": "searchProductByBrand",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/searchProduct/brand/test-6/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"searchProduct",
+								"brand",
+								"test-6",
+								""
+							]
+						},
+						"description": "Searches with product brand."
+					},
+					"response": []
+				},
+				{
+					"name": "searchProductByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/searchProduct/id/65089841ba13334d99c6448b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"searchProduct",
+								"id",
+								"65089841ba13334d99c6448b"
+							]
+						},
+						"description": "Searches with product id."
+					},
+					"response": []
+				}
+			],
+			"description": "Searching products"
+		},
+		{
+			"name": "ProductUpdate",
+			"item": [
+				{
+					"name": "updateProductName",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/name/6508c94d7c850d6099b828f1/name-1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"name",
+								"6508c94d7c850d6099b828f1",
+								"name-1000"
+							]
+						},
+						"description": "Updates with new name, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductCode",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/code/6508c94d7c850d6099b828f1/code-1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"code",
+								"6508c94d7c850d6099b828f1",
+								"code-1000"
+							]
+						},
+						"description": "Updates with new code, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductDescription",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/description/6508c94d7c850d6099b828f1/description-1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"description",
+								"6508c94d7c850d6099b828f1",
+								"description-1000"
+							]
+						},
+						"description": "Updates with new description, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductBrand",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/brand/6508c94d7c850d6099b828f1/brand-1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"brand",
+								"6508c94d7c850d6099b828f1",
+								"brand-1000"
+							]
+						},
+						"description": "Updates with new brand, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductCurrency",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/currency/6508c94d7c850d6099b828f1/currency-1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"currency",
+								"6508c94d7c850d6099b828f1",
+								"currency-1000"
+							]
+						},
+						"description": "Updates with new currency, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductPrice",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/price/6508c94d7c850d6099b828f1/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"price",
+								"6508c94d7c850d6099b828f1",
+								"1000"
+							]
+						},
+						"description": "Updates with new price, takes id of element to be updated."
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductStock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/updateProduct/price/6508c94d7c850d6099b828f1/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateProduct",
+								"price",
+								"6508c94d7c850d6099b828f1",
+								"1000"
+							]
+						},
+						"description": "Updates with new stock, takes id of element to be updated."
+					},
+					"response": []
+				}
+			],
+			"description": "Updating Products"
+		}
+	]
+}
