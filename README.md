@@ -1,4 +1,5 @@
 # productservicedx
+This porject contaions sample CRUD operations and Basic Auth for a CBE pattern based backend service with the usage of Java Quarkus Framework.
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
